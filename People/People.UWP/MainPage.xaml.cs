@@ -21,7 +21,9 @@ namespace People.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new People.App());
+            string dbPath = FileAccessHelper.GetLocalFilePath("people.db3");
+
+            LoadApplication(new People.App(dbPath));
         }
     }
 }

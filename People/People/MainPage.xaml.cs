@@ -9,9 +9,15 @@ namespace People
 {
 	public partial class MainPage : ContentPage
 	{
+        public string Text
+        {
+            get { return pathLabel.Text; }
+            set { pathLabel.Text = value; }
+        }
 		public MainPage()
 		{
 			InitializeComponent();
+            
 		}
 	}
 }
