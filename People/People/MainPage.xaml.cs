@@ -1,23 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using People.Models;
+using System;
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace People
 {
-	public partial class MainPage : ContentPage
-	{
-        public string Text
+    public partial class MainPage : ContentPage
+    {
+        public MainPage()
         {
-            get { return pathLabel.Text; }
-            set { pathLabel.Text = value; }
+            InitializeComponent();
         }
-		public MainPage()
-		{
-			InitializeComponent();
-            
-		}
-	}
+
+        public void OnNewButtonClicked(object sender, EventArgs args)
+        {
+            statusMessage.Text = "";
+
+            App.PersonRepo.AddNewPerson(newPerson.Text);
+            statusMessage.Text = App.PersonRepo.StatusMessage;
+        }
+
+        public void OnGetButtonClicked(object sender, EventArgs args)
+        {
+            statusMessage.Text = "";
+
+            List<Person> people = App.PersonRepo.GetAllPeople();
+            peopleList.ItemsSource = people;
+        }
+    }
 }

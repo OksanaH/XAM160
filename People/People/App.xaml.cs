@@ -1,37 +1,38 @@
 using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-[assembly: XamlCompilation (XamlCompilationOptions.Compile)]
+using Xamarin.Forms;
+
 namespace People
 {
-	public partial class App : Application
-	{
-		public App (string displayText)
-		{
-			InitializeComponent();
+    public partial class App : Application
+    {
+        public static PersonRepository PersonRepo { get; private set; }
 
-            MainPage = new MainPage()
-            {
-                Text = displayText
-            };
-            
-           
-		}
+        public App(string dbPath)
+        {
+            InitializeComponent();
 
-		protected override void OnStart ()
-		{
-			// Handle when your app starts
-		}
+            PersonRepo = new PersonRepository(dbPath);
 
-		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
+            MainPage = new People.MainPage();
+        }
 
-		protected override void OnResume ()
-		{
-			// Handle when your app resumes
-		}
-	}
+        protected override void OnStart()
+        {
+            // Handle when your app starts
+        }
+
+        protected override void OnSleep()
+        {
+            // Handle when your app sleeps
+        }
+
+        protected override void OnResume()
+        {
+            // Handle when your app resumes
+        }
+    }
 }
